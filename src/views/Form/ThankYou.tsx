@@ -1,8 +1,10 @@
+import CheckIcon from '@mui/icons-material/Check';
 import { Box, Typography } from '@mui/material';
 
-import CheckIcon from '@mui/icons-material/Check';
-
 import { FormButton } from '@components/Form/Button';
+
+import { useForm } from '@hooks/useForm';
+
 import { useOnboard } from '@provider/Onboard';
 
 import theme from '@shared/theme';
@@ -11,6 +13,9 @@ export const ThankYouScreen = () => {
   const {
     userInfo: { displayName },
   } = useOnboard();
+
+  const { onReset } = useForm();
+
   return (
     <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
       <Box
@@ -47,7 +52,7 @@ export const ThankYouScreen = () => {
 
       <Box marginTop={'3rem'} />
 
-      <FormButton>
+      <FormButton onClick={onReset}>
         <Typography textTransform={'capitalize'}>Launch Eden</Typography>
       </FormButton>
     </Box>

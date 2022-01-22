@@ -6,9 +6,11 @@ import Document, {
   DocumentProps,
   DocumentContext,
 } from 'next/document';
+
 import createEmotionServer from '@emotion/server/create-instance';
-import theme from '@shared/theme';
+
 import createEmotionCache from '@shared/createEmotionCache';
+import theme from '@shared/theme';
 
 export default function MyDocument(props: DocumentProps) {
   return (

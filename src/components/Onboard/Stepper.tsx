@@ -6,7 +6,6 @@ import {
   StepConnector,
   stepConnectorClasses,
 } from '@mui/material';
-
 import { styled } from '@mui/system';
 
 import { useOnboard } from '@provider/Onboard';
