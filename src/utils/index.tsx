@@ -4,16 +4,16 @@ export const saveInfoInLocalStorage = (
   key: 'formInfo',
   value: Partial<OnboardType>
 ) => {
-  let info = JSON.parse(localStorage.getItem(key)!);
+  let info = localStorage.getItem(key);
 
   if (info) {
     info = {
-      ...info,
+      ...JSON.parse(info),
       ...value,
     };
-  } else {
-    info = value;
+    localStorage.setItem('formInfo', JSON.stringify(info));
+    return;
   }
 
-  localStorage.setItem('formInfo', JSON.stringify(info));
+  localStorage.setItem('formInfo', JSON.stringify(value));
 };

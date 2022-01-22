@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { Box, Stack, Typography } from '@mui/material';
-
 import GroupsIcon from '@mui/icons-material/Groups';
 import PersonIcon from '@mui/icons-material/Person';
+import { Box, Stack, Typography } from '@mui/material';
 
 import { FormButton } from '@components/Form/Button';
 
@@ -37,10 +36,13 @@ export const UseCaseForm = () => {
   };
 
   const handleSubmit = () => {
-    const { Icon, ...rest } = useCaseItems[activeIndex];
+    const useCaseItem = useCaseItems[activeIndex];
 
     const userInfo = {
-      useCase: rest,
+      useCase: {
+        title: useCaseItem.title,
+        description: useCaseItem.description,
+      },
     };
 
     onSubmit(userInfo);

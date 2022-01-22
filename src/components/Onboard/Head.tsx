@@ -1,6 +1,5 @@
-import { Stack, Typography } from '@mui/material';
-
 import SpaIcon from '@mui/icons-material/Spa';
+import { Stack, Typography } from '@mui/material';
 
 export const OnboardHead = () => {
   return (

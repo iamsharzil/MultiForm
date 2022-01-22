@@ -2,14 +2,14 @@ import React from 'react';
 
 import { Box, TextField, Typography } from '@mui/material';
 
-import { FormInput, FormLabel } from '@components/Form/Input';
 import { FormButton } from '@components/Form/Button';
+import { FormInput, FormLabel } from '@components/Form/Input';
 
 import { useForm } from '@hooks/useForm';
 
 export const PersonalDetailsForm = () => {
   const [fullName, setFullName] = React.useState('Steve Jobs');
-  const [displayName, setDisplayName] = React.useState('Steve ');
+  const [displayName, setDisplayName] = React.useState('Steve');
 
   const { onSubmit } = useForm();
 

@@ -1,6 +1,8 @@
 import React from 'react';
 
-const initialState = {
+import dynamic from 'next/dynamic';
+
+export const initialState = {
   activeStep: 0,
   userInfo: {
     fullName: '',
@@ -53,6 +55,9 @@ const onboardReducer = (state = initialState, action: ACTIONTYPE) => {
       return {
         ...state,
         activeStep: 0,
+        userInfo: {
+          ...initialState.userInfo,
+        },
       };
 
     case 'UPDATE_USER_INFO':
@@ -74,7 +79,27 @@ export const OnboardProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [state, dispatch] = React.useReducer(onboardReducer, initialState);
+  const [state, dispatch] = React.useReducer(
+    onboardReducer,
+    initialState,
+    (initialArgs) => {
+      const savedInfo = localStorage.getItem('formInfo');
+
+      if (savedInfo) {
+        const { activeStep = 0, ...userInfo } = JSON.parse(savedInfo);
+
+        return {
+          ...initialArgs,
+          activeStep,
+          userInfo,
+        };
+      }
+
+      return {
+        ...initialArgs,
+      };
+    }
+  );
 
   return (
     <OnboardDispatchContext.Provider value={dispatch}>
@@ -104,3 +129,10 @@ export const useOnboardDispatch = () => {
 
   return context;
 };
+
+export const DynamicOnboardProvider = dynamic(
+  () => Promise.resolve(OnboardProvider),
+  {
+    ssr: false,
+  }
+);
