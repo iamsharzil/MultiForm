@@ -1,11 +1,6 @@
 import React from 'react';
 
-import {
-  initialState,
-  PayloadType,
-  useOnboard,
-  useOnboardDispatch,
-} from '@provider/Onboard';
+import { PayloadType, useOnboard, useOnboardDispatch } from '@provider/Onboard';
 
 import { saveInfoInLocalStorage } from '@utils/index';
 
