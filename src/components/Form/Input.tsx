@@ -21,7 +21,7 @@ export const FormLabel = ({
   ...props
 }: LabelType) => {
   return (
-    <Typography component={'label'} htmlFor={props.id} marginBottom={'0.5rem'}>
+    <Typography component={'label'} marginBottom={'0.5rem'} {...props}>
       {children}
       <Typography variant="body2" component={'span'}>
         {optional && ' (optional)'}

@@ -8,6 +8,8 @@ import { FormButton } from '@components/Form/Button';
 
 import { useForm } from '@hooks/useForm';
 
+import { PayloadType } from '@provider/Onboard';
+
 import theme from '@shared/theme';
 
 const useCaseItems = [
@@ -27,25 +29,22 @@ Write docs, tasks & projects, all in one place`,
 
 export const UseCaseForm = () => {
   const [activeIndex, setActiveIndex] = React.useState(0);
-
-  const { onSubmit } = useForm();
+  const [, { onSubmit, onUseCaseClick }] = useForm();
 
   const onToggleUseCaseClick = (id: number) => {
     if (id === activeIndex) return;
     setActiveIndex(id);
-  };
 
-  const handleSubmit = () => {
-    const useCaseItem = useCaseItems[activeIndex];
+    const { title, description } = useCaseItems[id];
 
-    const userInfo = {
+    const { useCase }: Pick<PayloadType, 'useCase'> = {
       useCase: {
-        title: useCaseItem.title,
-        description: useCaseItem.description,
+        title,
+        description,
       },
     };
 
-    onSubmit(userInfo);
+    onUseCaseClick({ useCase });
   };
 
   return (
@@ -102,7 +101,7 @@ export const UseCaseForm = () => {
 
       <Box marginTop={'2rem'} />
 
-      <FormButton onClick={handleSubmit}>
+      <FormButton onClick={onSubmit}>
         <Typography textTransform={'capitalize'}>Create Workspace</Typography>
       </FormButton>
     </Box>

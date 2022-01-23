@@ -20,7 +20,6 @@ export type OnboardType = typeof initialState;
 export type PayloadType = Partial<typeof initialState.userInfo>;
 
 type ACTIONTYPE =
-  // | { type: 'PREV_STEP' }
   | { type: 'NEXT_STEP' }
   | { type: 'RESET' }
   | {
@@ -31,7 +30,6 @@ type ACTIONTYPE =
 type OnboardDispatchType = React.Dispatch<ACTIONTYPE>;
 
 const OnboardContext = React.createContext<OnboardType | null>(null);
-
 const OnboardDispatchContext = React.createContext<OnboardDispatchType | null>(
   null
 );
@@ -39,12 +37,6 @@ const OnboardDispatchContext = React.createContext<OnboardDispatchType | null>(
 const onboardReducer = (state = initialState, action: ACTIONTYPE) => {
   const { type } = action;
   switch (type) {
-    // case 'PREV_STEP':
-    //   return {
-    //     ...state,
-    //     activeStep: state.activeStep - 1,
-    //   };
-
     case 'NEXT_STEP':
       return {
         ...state,

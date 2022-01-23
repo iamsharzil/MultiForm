@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Box, TextField, Typography } from '@mui/material';
 
 import { FormButton } from '@components/Form/Button';
@@ -8,30 +6,16 @@ import { FormInput, FormLabel } from '@components/Form/Input';
 import { useForm } from '@hooks/useForm';
 
 export const PersonalDetailsForm = () => {
-  const [fullName, setFullName] = React.useState('Steve Jobs');
-  const [displayName, setDisplayName] = React.useState('Steve');
-
-  const { onSubmit } = useForm();
-
-  const onChangeFullName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFullName(e.target.value);
-  };
-
-  const onChangeDisplayName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDisplayName(e.target.value);
-  };
+  const [
+    { fullName = 'Steve Jobs', displayName = 'Steve' },
+    { onSubmit, onChange },
+  ] = useForm();
 
   const handleSubmit = () => {
     if (!fullName || !displayName) {
       return;
     }
-
-    const userInfo = {
-      fullName,
-      displayName,
-    };
-
-    onSubmit(userInfo);
+    onSubmit();
   };
 
   return (
@@ -52,9 +36,10 @@ export const PersonalDetailsForm = () => {
         <FormLabel htmlFor="fullName">Full Name</FormLabel>
         <TextField
           value={fullName}
-          onChange={onChangeFullName}
+          onChange={onChange}
           error={!fullName}
           id="fullName"
+          name="fullName"
         />
       </FormInput>
 
@@ -64,9 +49,10 @@ export const PersonalDetailsForm = () => {
         <FormLabel htmlFor="displayName">Display Name</FormLabel>
         <TextField
           value={displayName}
-          onChange={onChangeDisplayName}
+          onChange={onChange}
           error={!displayName}
           id="displayName"
+          name="displayName"
         />
       </FormInput>
 
