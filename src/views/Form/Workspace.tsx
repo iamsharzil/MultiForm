@@ -8,30 +8,17 @@ import { FormInput, FormLabel } from '@components/Form/Input';
 import { useForm } from '@hooks/useForm';
 
 export const WorkspaceForm = () => {
-  const [workspaceName, setWorkspaceName] = React.useState('Eden');
-  const [workspaceUrl, setWorkspaceUrl] = React.useState('Example');
-
-  const { onSubmit } = useForm();
-
-  const onChangeFullName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setWorkspaceName(e.target.value);
-  };
-
-  const onChangeDisplayName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setWorkspaceUrl(e.target.value);
-  };
+  const [
+    { workspaceName = 'Eden', workspaceUrl = 'example' },
+    { onChange, onSubmit },
+  ] = useForm();
 
   const handleSubmit = () => {
     if (!workspaceName || !workspaceUrl) {
       return;
     }
 
-    const workspaceInfo = {
-      workspaceName,
-      workspaceUrl,
-    };
-
-    onSubmit(workspaceInfo);
+    onSubmit();
   };
 
   return (
@@ -52,8 +39,9 @@ export const WorkspaceForm = () => {
         <FormLabel htmlFor="workspaceName">Workspace Name</FormLabel>
         <TextField
           id="workspaceName"
+          name="workspaceName"
           value={workspaceName}
-          onChange={onChangeFullName}
+          onChange={onChange}
           error={!workspaceName}
         />
       </FormInput>
@@ -92,8 +80,9 @@ export const WorkspaceForm = () => {
           />
           <TextField
             id="workspaceUrl"
+            name="workspaceUrl"
             value={workspaceUrl}
-            onChange={onChangeDisplayName}
+            onChange={onChange}
             error={!workspaceUrl}
             sx={{
               flex: 1,

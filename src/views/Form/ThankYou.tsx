@@ -14,7 +14,7 @@ export const ThankYouScreen = () => {
     userInfo: { displayName },
   } = useOnboard();
 
-  const { onReset } = useForm();
+  const [, { onReset }] = useForm();
 
   return (
     <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
